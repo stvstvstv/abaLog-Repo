@@ -1,0 +1,61 @@
+CREATE TABLE abaLog(
+ terapeutID text,
+ copilID text,
+ programID text,
+ value text,
+ PRIMARY KEY ((terapeutID, copilID), programID))
+ WITH CLUSTERING ORDER BY (programID ASC);
+
+
+ insert into document (project, stage, type, id, last_updated, last_updated_by, value) values ('webshop', '_default', 'product', 'c001', '2018-09-18', 'product list test','{"sku":"c001", "name":"product 001", "description":"test description 001", "sellingPrice":"100", "enabled":"true", "category":"/categ/prod", "slug":"pizza", "thumbnailUrl":"https://thestingyvegan.com/wp-content/uploads/2017/10/vegan-nacho-pizza-photo.jpg"}'); 
+
+
+ INSERT INTO abalog (terapeutID, copilID, programID, value) values
+ ('iulia001','stefan001','p001','{"item":{"id":"item001","nume":"recunoaste ob","scor":"50","data":"10-10-2018"}}');
+  INSERT INTO abalog (terapeutID, copilID, programID, value) values
+ ('iulia001','stefan001','p001','{"item":{"id":"item002","nume":"recunoaste alt obiect","scor":"55","data":"10-10-2018"}}');
+
+############################################
+CREATE TABLE abaLog(
+ organizatie text,
+ centru text,
+ type text,
+ id text,
+ value text,
+ PRIMARY KEY ((organizatie, centru, coordonatorID, type), id))
+ WITH CLUSTERING ORDER BY (id ASC);
+
+insert into abaLog (organizatie, centru, type, id, value) values
+('ATCA', 'Orzari','item','i001','{"taskName":"task1","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');
+insert into abaLog (organizatie, centru, type, id, value) values
+('ATCA', 'Orzari','item','i002','{"taskName":"task1","isMastered":"false","version": [{"date":"2018-10-04","scor":"30"}]}');
+insert into abaLog (organizatie, centru, type, id, value) values
+('ATCA', 'Orzari','c','i001','{"taskName":"task1","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');
+
+####################################################
+
+CREATE TABLE program(
+ programID text,
+ name text,
+ mastered boolean,
+ PRIMARY KEY (programID));
+
+CREATE TABLE tasksByProgram(
+ programID text,
+ itemId text,
+ value text,
+ PRIMARY KEY ((programID), itemID))
+ WITH CLUSTERING ORDER BY (itemID ASC);
+
+
+ INSERT INTO program (programID, name, mastered) VALUES
+ ('p001','program_test1',false);
+ INSERT INTO program (programID, name, mastered) VALUES
+ ('p002','program_test2',false);
+
+
+ INSERT INTO tasksByProgram (programID, itemID, value) VALUES
+('p001','i001','{"id":"i002","taskName":"task1","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');
+
+ INSERT INTO tasksByProgram (programID, itemID, value) VALUES
+('p001','i002','{"id":"i002","taskName":"task2","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');

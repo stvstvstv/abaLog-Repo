@@ -1,0 +1,69 @@
+CREATE TABLE abaLog(
+ terapeutID text,
+ copilID text,
+ programID text,
+ value text,
+ PRIMARY KEY ((terapeutID, copilID), programID))
+ WITH CLUSTERING ORDER BY (programID ASC);
+
+
+ insert into document (project, stage, type, id, last_updated, last_updated_by, value) values ('webshop', '_default', 'product', 'c001', '2018-09-18', 'product list test','{"sku":"c001", "name":"product 001", "description":"test description 001", "sellingPrice":"100", "enabled":"true", "category":"/categ/prod", "slug":"pizza", "thumbnailUrl":"https://thestingyvegan.com/wp-content/uploads/2017/10/vegan-nacho-pizza-photo.jpg"}'); 
+
+
+ INSERT INTO abalog (terapeutID, copilID, programID, value) values
+ ('iulia001','stefan001','p001','{"item":{"id":"item001","nume":"recunoaste ob","scor":"50","data":"10-10-2018"}}');
+  INSERT INTO abalog (terapeutID, copilID, programID, value) values
+ ('iulia001','stefan001','p001','{"item":{"id":"item002","nume":"recunoaste alt obiect","scor":"55","data":"10-10-2018"}}');
+
+
+ item{
+ 	'id':item1111,
+ 	'task':'ceva',
+ 	'versiune':{
+ 		'data':'1992',
+ 		'scor':50%
+ 	}
+
+
+ }
+Entitati de luat in calcul: Evaluare, PIP, Parinte, terapeut
+ copil:
+ -----
+ id,
+ nume,
+ terapeutID,
+ programList
+
+
+ program:
+ -------
+ id,
+ name,
+ overallScore,
+ isMasterat,
+ itemList
+
+
+item:
+-----
+id,
+taskName,
+lastScore?,
+isMastered?,
+versiune:{[ data, scor ]}
+
+V1
+terapeut,copil,type(program sau item),id,value
+
+V2
+~~~~ asociatie, centru, coordonator, type (program/item/copil), id, value 
+
+V3
+~~~~ asociatie, centru, type (program/item/copil/coordonator), id, value 
+
+
+V5
+~~~~ 
+
+PROGRAM: ProgramID, Name, isMastered, mastered%
+ITEMS: ProgramID, ItemID, value {task_name, lastScore, version{[ data, scor ]}}

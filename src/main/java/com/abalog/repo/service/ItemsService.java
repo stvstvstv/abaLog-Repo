@@ -1,6 +1,7 @@
 package com.abalog.repo.service;
 
 import com.abalog.repo.domain.ItemByProgram;
+import com.abalog.repo.domain.ItemByProgramPrimaryKey;
 import com.abalog.repo.dto.ItemByProgramDTO;
 import com.abalog.repo.dto.ItemByProgramDTOMapper;
 import com.abalog.repo.dto.ItemUpdateResponseDTO;
@@ -54,5 +55,11 @@ public class ItemsService {
             return entry;
         }).collect(Collectors.toList());
 
+    }
+
+    public void deleteOne(String programid, String itemid) {
+        itemsRepository.delete(ItemByProgram.builder()
+                .primaryKey(ItemByProgramPrimaryKey.builder().itemid(itemid).programid(programid).build())
+                .build());
     }
 }

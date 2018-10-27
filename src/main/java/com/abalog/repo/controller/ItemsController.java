@@ -27,9 +27,9 @@ public class ItemsController {
     public ResponseEntity<Map<String, Object>> findOne(@PathVariable String programid, @PathVariable String itemid) {
 
         ItemByProgramDTO dto = itemsService.findOne(programid, itemid);
-        if (dto == null){
+        if (dto == null) {
             return ResponseEntity.noContent().header("NUUUUU").build();
-        }else {
+        } else {
             return ResponseEntity.ok().header("heeeeeader")
                     .body(dto.getValue());
         }
@@ -51,9 +51,15 @@ public class ItemsController {
 
     @PutMapping("/{programid}")
     public ResponseEntity<List<ItemUpdateResponseDTO>> saveBulk(@PathVariable String programid,
-                                                                @RequestBody @Valid List<ItemByProgramDTO> itemDTOList){
+                                                                @RequestBody @Valid List<ItemByProgramDTO> itemDTOList) {
 
         return ResponseEntity.ok().body(itemsService.saveBulk(programid, itemDTOList));
+    }
+
+    @DeleteMapping("/{programid}/{itemid}")
+    public ResponseEntity<String> deleteOne(@PathVariable String programid, @PathVariable String itemid) {
+        itemsService.deleteOne(programid, itemid);
+        return ResponseEntity.ok().body("OK");
     }
 
 

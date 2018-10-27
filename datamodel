@@ -40,7 +40,7 @@ CREATE TABLE program(
  mastered boolean,
  PRIMARY KEY (programID));
 
-CREATE TABLE tasksByProgram(
+CREATE TABLE itemByProgram(
  programID text,
  itemId text,
  value text,
@@ -54,8 +54,8 @@ CREATE TABLE tasksByProgram(
  ('p002','program_test2',false);
 
 
- INSERT INTO tasksByProgram (programID, itemID, value) VALUES
-('p001','i001','{"id":"i002","taskName":"task1","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');
+ INSERT INTO itemByProgram (programID, itemID, value) VALUES
+('p001','i001','{"id":"i001","taskName":"task1","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');
 
- INSERT INTO tasksByProgram (programID, itemID, value) VALUES
+ INSERT INTO itemByProgram (programID, itemID, value) VALUES
 ('p001','i002','{"id":"i002","taskName":"task2","isMastered":"false","version": [{"date":"2018-10-09","scor":"30"}]}');

@@ -24,7 +24,7 @@ public class ItemByProgramDTOMapper {
         if (itemByProgram == null) {
             return null;
         } else try {
-            return ItemByProgramDTO.builder()
+            return ItemByProgramDTO.builder().itemID(itemByProgram.getPrimaryKey().getItemid())
                     .value(objectMapper.readValue(itemByProgram.getValue(), Map.class)).build();
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -32,13 +32,13 @@ public class ItemByProgramDTOMapper {
         }
     }
 
-    public ItemByProgram toItem(ItemByProgramDTO dto, String proiectid, String itemid) {
+    public ItemByProgram toItem(ItemByProgramDTO dto, String programId) {
         if (dto == null) {
             return null;
         } else try {
             return ItemByProgram.builder()
                     .primaryKey(ItemByProgramPrimaryKey.builder()
-                            .programid(proiectid).itemid(itemid).build())
+                            .programid(programId).itemid(dto.getItemID()).build())
                     .value(objectMapper.writeValueAsString(dto.getValue()))
                     .build();
         } catch (JsonProcessingException e) {

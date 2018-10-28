@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/data")
-@Api(tags = "Repository data")
+@RequestMapping(path = "/items")
+@Api(tags = "Repository Items data")
 @Slf4j
 public class ItemsController {
 

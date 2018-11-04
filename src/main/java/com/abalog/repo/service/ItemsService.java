@@ -5,7 +5,7 @@ import com.abalog.repo.domain.ItemByProgramPrimaryKey;
 import com.abalog.repo.dto.ItemByProgramDTO;
 import com.abalog.repo.dto.ItemByProgramDTOMapper;
 import com.abalog.repo.dto.ItemUpdateResponseDTO;
-import com.abalog.repo.repository.ItemsRepository;
+import com.abalog.repo.repository.ItemByProgramRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,25 +18,26 @@ import java.util.stream.Collectors;
 public class ItemsService {
 
     @Autowired
-    ItemsRepository itemsRepository;
+    ItemByProgramRepository itemByProgramRepository;
 
     @Autowired
     ItemByProgramDTOMapper mapper;
 
     public final ItemByProgramDTO findOne(String programid, String itemid) {
 
-        return mapper.fromItem(itemsRepository.findOne(programid, itemid));
+        return mapper.fromItem(itemByProgramRepository.findOne(programid, itemid));
     }
 
     public final List<ItemByProgramDTO> findAll(String programid) {
-        return itemsRepository.findAllByProgram(programid).stream()
+        return itemByProgramRepository.findAllByProgram(programid).stream()
                 .map(item -> mapper.fromItem(item))
                 .collect(Collectors.toList());
     }
 
     public final ItemByProgramDTO saveOne(String programid, ItemByProgramDTO itemDTO) {
         ItemByProgram itemByProgram = mapper.toItem(itemDTO, programid);
-        itemsRepository.save(itemByProgram);
+//        itemByProgramRepository.save(itemByProgram);
+        itemByProgramRepository.saveBatch(itemByProgram);
         return itemDTO;
     }
 
@@ -58,7 +59,7 @@ public class ItemsService {
     }
 
     public void deleteOne(String programid, String itemid) {
-        itemsRepository.delete(ItemByProgram.builder()
+        itemByProgramRepository.delete(ItemByProgram.builder()
                 .primaryKey(ItemByProgramPrimaryKey.builder().itemid(itemid).programid(programid).build())
                 .build());
     }

@@ -7,7 +7,7 @@ import org.springframework.data.cassandra.repository.Query;
 
 import java.util.List;
 
-public interface ItemByProgramRepository extends CassandraRepository<ItemByProgram, ItemByProgramPrimaryKey>, CustomItemByProgramRepository {
+public interface ItemsRepository extends CassandraRepository<ItemByProgram, ItemByProgramPrimaryKey> {
 
     @Query("SELECT * FROM itembyprogram WHERE programid=?0 AND itemid=?1")
     ItemByProgram findOne(String programid, String itemid);

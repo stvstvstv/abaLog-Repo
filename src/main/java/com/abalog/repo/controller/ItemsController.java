@@ -34,7 +34,6 @@ public class ItemsController {
                     .body(dto.getValue());
         }
     }
-
     @GetMapping("/{programid}")
     public List<ItemByProgramDTO> findItemsByProgram(@PathVariable String programid) {
         return itemsService.findAll(programid);

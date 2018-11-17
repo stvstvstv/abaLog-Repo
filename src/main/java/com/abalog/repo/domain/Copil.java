@@ -12,13 +12,10 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-public class Program {
+public class Copil {
 
     @PrimaryKey
-    private String programid;
-
-    private Boolean mastered;
+    private String copilID;
 
     private String name;
-
 }

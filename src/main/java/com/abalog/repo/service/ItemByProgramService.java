@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class ItemsService {
+public class ItemByProgramService {
 
     @Autowired
     ItemByProgramRepository itemByProgramRepository;

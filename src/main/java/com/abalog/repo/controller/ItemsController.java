@@ -3,7 +3,7 @@ package com.abalog.repo.controller;
 
 import com.abalog.repo.dto.ItemByProgramDTO;
 import com.abalog.repo.dto.ItemUpdateResponseDTO;
-import com.abalog.repo.service.ItemsService;
+import com.abalog.repo.service.ItemByProgramService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ import java.util.Map;
 public class ItemsController {
 
     @Autowired
-    private ItemsService itemsService;
+	private ItemByProgramService itemByProgramService;
 
     @GetMapping("/{programid}/{itemid}")
     public ResponseEntity<Map<String, Object>> findOne(@PathVariable String programid, @PathVariable String itemid) {
 
-        ItemByProgramDTO dto = itemsService.findOne(programid, itemid);
+		ItemByProgramDTO dto = itemByProgramService.findOne(programid, itemid);
         if (dto == null) {
             return ResponseEntity.noContent().header("NUUUUU").build();
         } else {
@@ -36,7 +36,7 @@ public class ItemsController {
     }
     @GetMapping("/{programid}")
     public List<ItemByProgramDTO> findItemsByProgram(@PathVariable String programid) {
-        return itemsService.findAll(programid);
+		return itemByProgramService.findAll(programid);
     }
 
     @PutMapping("/{programid}/{itemid}")
@@ -44,7 +44,7 @@ public class ItemsController {
                                        @RequestBody @Valid Map<String, Object> payload) {
 
         ItemByProgramDTO itemDTO = ItemByProgramDTO.builder().itemID(itemid).value(payload).build();
-        itemsService.saveOne(programid, itemDTO);
+		itemByProgramService.saveOne(programid, itemDTO);
         return ResponseEntity.ok().header("Insert Worked").body("Insert worked body");
     }
 
@@ -52,12 +52,12 @@ public class ItemsController {
     public ResponseEntity<List<ItemUpdateResponseDTO>> saveBulk(@PathVariable String programid,
                                                                 @RequestBody @Valid List<ItemByProgramDTO> itemDTOList) {
 
-        return ResponseEntity.ok().body(itemsService.saveBulk(programid, itemDTOList));
+		return ResponseEntity.ok().body(itemByProgramService.saveBulk(programid, itemDTOList));
     }
 
     @DeleteMapping("/{programid}/{itemid}")
     public ResponseEntity<String> deleteOne(@PathVariable String programid, @PathVariable String itemid) {
-        itemsService.deleteOne(programid, itemid);
+		itemByProgramService.deleteOne(programid, itemid);
         return ResponseEntity.ok().body("OK");
     }
 

@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping(path = "/items")
 @Api(tags = "Repository Items data")
 @Slf4j
-public class ItemsController {
+public class ItemsByProgramController {
 
     @Autowired
 	private ItemByProgramService itemByProgramService;

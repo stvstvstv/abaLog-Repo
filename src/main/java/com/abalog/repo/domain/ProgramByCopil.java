@@ -18,5 +18,5 @@ public class ProgramByCopil {
 
     private Boolean mastered;
 
-    private String name;
+    private String nume;
 }

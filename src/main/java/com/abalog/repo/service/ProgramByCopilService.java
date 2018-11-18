@@ -1,5 +1,6 @@
 package com.abalog.repo.service;
 
+import com.abalog.repo.domain.ProgramByCopil;
 import com.abalog.repo.dto.ProgramByCopilDTO;
 import com.abalog.repo.dto.ProgramByCopilDTOMapper;
 import com.abalog.repo.repository.ProgramByCopilRepository;
@@ -19,6 +20,10 @@ public class ProgramByCopilService {
 
 	public final ProgramByCopilDTO findOne(String copilid, String programid) {
 		return mapper.toDto(programByCopilRepository.findOne(copilid, programid));
+	}
+
+	public void saveBatch(ProgramByCopil programByCopil) {
+		programByCopilRepository.saveBatch2(programByCopil);
 	}
 
 

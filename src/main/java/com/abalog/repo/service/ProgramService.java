@@ -19,9 +19,11 @@ public class ProgramService {
         return programRepository.findOne(programid);
     }
 
-    //TODO: adauga copil, findAll dupa copil !
     public final List<Program> findAllPrograms(){
         return programRepository.findAll();
     }
 
+	public void addProgram(String programid, String name, Boolean mastered) {
+		programRepository.save(Program.builder().name(name).mastered(mastered).programid(programid).build());
+	}
 }

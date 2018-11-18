@@ -1,14 +1,13 @@
 package com.abalog.repo.controller;
 
 
+import com.abalog.repo.domain.ProgramByCopil;
+import com.abalog.repo.domain.ProgramByCopilPrimaryKey;
 import com.abalog.repo.dto.ProgramByCopilDTO;
 import com.abalog.repo.service.ProgramByCopilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/programbycopil")
@@ -26,5 +25,18 @@ public class ProgramsByCopilController {
 		} else {
 			return ResponseEntity.ok().body(dto);
 		}
+	}
+
+	@PutMapping("/{copilid}/{programid}")
+	public ResponseEntity<String> saveBatch(@PathVariable String copilid, @PathVariable String programid,
+											@RequestParam String name, @RequestParam Boolean mastered) {
+
+		programByCopilService.saveBatch(ProgramByCopil.builder().primaryKey(
+				ProgramByCopilPrimaryKey.builder()
+						.copilid(copilid).programid(programid)
+						.build())
+				.nume(name).mastered(mastered)
+				.build());
+		return ResponseEntity.ok().body("worked");
 	}
 }

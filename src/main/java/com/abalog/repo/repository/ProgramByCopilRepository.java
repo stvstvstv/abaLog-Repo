@@ -7,7 +7,8 @@ import org.springframework.data.cassandra.repository.Query;
 
 import java.util.List;
 
-public interface ProgramByCopilRepository extends CassandraRepository<ProgramByCopil, ProgramByCopilPrimaryKey> {
+public interface ProgramByCopilRepository
+		extends CassandraRepository<ProgramByCopil, ProgramByCopilPrimaryKey>, CustomProgramByCopilRepository {
 
 	@Query("SELECT * FROM programbycopil WHERE copilid=?0 AND programid=?1")
 	ProgramByCopil findOne(String copilid, String programid);

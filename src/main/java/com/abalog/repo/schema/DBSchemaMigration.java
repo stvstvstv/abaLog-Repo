@@ -19,6 +19,11 @@ public class DBSchemaMigration implements CommandLineRunner {
 		final MigrationResources resources = new MigrationResources();
 		resources.addMigration(new CopilTableDefinition(1));
 		resources.addMigration(new ProgramTableDefinition(2));
+		resources.addMigration(new ItemTableDefinition(3));
+		resources.addMigration(new ProgramByCopilTableDefinition(4));
+		resources.addMigration(new ItemByProgramTableDefinition(5));
+
+
 
 		cassandraTemplate.getCqlOperations().execute((SessionCallback<Boolean>) session ->
 				MigrationEngine.withSession(session).migrate(resources));

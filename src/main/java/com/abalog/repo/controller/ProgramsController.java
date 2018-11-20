@@ -6,10 +6,7 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,11 +32,12 @@ public class ProgramsController {
     }
 
     @GetMapping("/")
-    //TODO: de adaugat copil si getMapping dupa copil
     public final List<Program> findAllPrograms(){
         return programService.findAllPrograms();
     }
 
-
-
+	@PutMapping("/{programid}")
+	public void addProgram(@PathVariable String programid, @RequestParam String name, @RequestParam Boolean mastered) {
+		programService.addProgram(programid, name, mastered);
+	}
 }

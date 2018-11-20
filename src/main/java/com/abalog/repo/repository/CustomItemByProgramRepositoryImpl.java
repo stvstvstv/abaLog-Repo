@@ -20,8 +20,6 @@ public class CustomItemByProgramRepositoryImpl implements CustomItemByProgramRep
 		insertItem(itemByProgram,batchOperations);
 		batchOperations.insert(itemByProgram);
 		batchOperations.execute();
-
-
 	}
 
 
